@@ -2,7 +2,7 @@ package fizzbuzz;
 
 public class FizzBuzz {
 
-	
+	 
 	/**
 	 * FizzBuzz gibt unterbestimmten Bedingungen einen Text aus:
 	 * 

@@ -50,7 +50,6 @@ public class FizzbuzzTest {
 		Assert.assertEquals("Buzz", FizzBuzz.fizzBuzz(100));
 	}
 
-
 	@Test
 	public void testFizzBuzz15() {
 		Assert.assertEquals("FizzBuzz", FizzBuzz.fizzBuzz(15));
@@ -75,13 +74,10 @@ public class FizzbuzzTest {
 	public void testI47() {
 		Assert.assertEquals("47", FizzBuzz.fizzBuzz(47));
 	}
-	
 
 	@Test
 	public void testI32() {
 		Assert.assertEquals("32", FizzBuzz.fizzBuzz(32));
 	}
-
-
 
 }

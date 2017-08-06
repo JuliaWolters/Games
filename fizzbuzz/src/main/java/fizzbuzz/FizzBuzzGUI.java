@@ -3,6 +3,8 @@ package fizzbuzz;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -12,19 +14,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class FizzBuzzGUI {
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				new FizzBuzzGUI().displayGUI();
-			}
-		});
-	}
 
 	public void displayGUI() {
 		JFrame frame = new JFrame("FizzBuzz");
@@ -47,14 +40,36 @@ public class FizzBuzzGUI {
 		label1.setLocation(5, 5);
 		label1.setSize(400, 150);
 		contentPane.add(label1);
+		
+		final String defaultTextFieldText = "Zahl eingeben";
 
-		final JTextField textField = new JTextField("Zahl eingeben");
+		final JTextField textField = new JTextField(defaultTextFieldText);
 		textField.setSize(100, 30);
 		textField.setLocation(80, 155);
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				textField.setText("");
+			}
+		});
+
+		textField.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {
+				if (defaultTextFieldText.equals(textField.getText())) {
+					textField.setText("");
+				}
+			}
+
+			public void keyReleased(KeyEvent e) {
+				if (defaultTextFieldText.equals(textField.getText())) {
+					textField.setText("");
+				}
+			}
+
+			public void keyPressed(KeyEvent e) {
+				if (defaultTextFieldText.equals(textField.getText())) {
+					textField.setText("");
+				}
 			}
 		});
 
@@ -73,7 +88,7 @@ public class FizzBuzzGUI {
 		LineBorder lBorder = new LineBorder(new Color(100, 100, 100));
 		label.setBorder(BorderFactory.createCompoundBorder(lBorder, eBorder));
 		contentPane.add(label);
-		button.addActionListener(new MyListener(textField, label));
+		button.addActionListener(new MyListener(textField, label, defaultTextFieldText));
 
 		frame.setContentPane(contentPane);
 		frame.setSize(410, 300);
@@ -85,14 +100,16 @@ public class FizzBuzzGUI {
 class MyListener implements ActionListener {
 	private JTextField textField;
 	private JLabel label;
+	private String defaultTextFieldText;
 
-	public MyListener(JTextField tf, JLabel l) {
-		textField = tf;
-		label = l;
+	public MyListener(JTextField tf, JLabel l, String text) {
+		this.textField = tf;
+		this.label = l;
+		this.defaultTextFieldText = text;
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		String text = textField.getText();
+		String text = this.textField.getText();
 
 		StringBuilder ergebnisText = new StringBuilder();
 		ergebnisText.append("Die Zahl ").append(text).append(" ergibt: ");
@@ -105,7 +122,8 @@ class MyListener implements ActionListener {
 
 		ergebnisText.append(s);
 
-		label.setText(ergebnisText.toString());
-		textField.setText("Zahl eingeben");
+		this.label.setText(ergebnisText.toString());
+		this.textField.setText(this.defaultTextFieldText);
+		this.textField.requestFocus();
 	}
 }

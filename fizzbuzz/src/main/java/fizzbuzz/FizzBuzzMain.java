@@ -6,9 +6,9 @@ import javax.swing.SwingUtilities;
  * Write a program that prints the numbers from 1 to 100. But for multiples of
  * three print "Fizz" instead of the number and for the multiples of five print
  * "Buzz". For numbers which are multiples of both three and five print
- * “FizzBuzz”."
+ * "FizzBuzz".
  * 
- * Für die Zahlen 1 bis 100 wird das Ergebnis ausgegeben. Anschließend wird die Grafische Oberfläche erstellt.
+ * FÃ¼r die Zahlen 1 bis 100 wird das Ergebnis ausgegeben. AnschlieÃŸend wird die Grafische OberflÃ¤che erstellt.
  * 
  * @author Julia
  *
